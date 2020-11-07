@@ -5,8 +5,11 @@
 		}
 	],
 	"settings": {
-		"editor.wordBasedSuggestions": false,
 		"editor.detectIndentation": false,
-		"editor.tabSize": 4
+		"editor.tabSize": 4,
+		"files.autoSave": "afterDelay",
+		"files.autoSaveDelay": 1000,
+		"editor.renderWhitespace": "all",
+		"editor.fontFamily": "Ricty Diminished"
 	}
 }
