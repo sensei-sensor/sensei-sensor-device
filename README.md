@@ -5,6 +5,18 @@ Raspberry Piで作るBLEタグのセンサー
 
 - Raspberry Pi 3 Model 3B+
 
+## 環境
+
+- Raspberry Pi OS Lite(32-bit) 5.4.51-v7+
+
+- BlueZ 5.50-1.2~deb10u1+rpt2
+
+- Python 3.7.3
+
+- pip3 18.1
+
+- bluepy 1.3.0
+
 ## Raspberry Piのセットアップ
 
 1. PCに Raspberry Pi 用のSDカードを挿入
@@ -19,7 +31,7 @@ Raspberry Piで作るBLEタグのセンサー
 
 	1. Raspberry Pi OS(other) をクリック
 
-	1. Raspberry Pi OS Lite を選択
+	1. Raspberry Pi OS Lite(32-bit) を選択
 
 1. SD Cardの下、**CHOOSE SD CARD** をクリック
 
@@ -94,4 +106,11 @@ $ sudo date --set='YYYY/MM/dd HH:mm:ss'
 ```shell
 $ sudo apt update
 $ sudo apt upgrade
+```
+
+1. Python用Bluetoothライブラリ `Bluepy` のインストール
+
+```shell
+sudo apt install python3-dev python3-pip libglib2.0-dev
+sudo pip3 install bluepy
 ```
