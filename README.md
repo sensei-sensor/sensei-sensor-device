@@ -21,23 +21,23 @@ Raspberry Piで作るBLEタグのセンサー
 
 1. PCに Raspberry Pi 用のSDカードを挿入
 
-1. [Raspberry Pi 公式サイト](https://www.raspberrypi.org/downloads/) から **Raspberry Pi Imager** をダウンロード
+2. [Raspberry Pi 公式サイト](https://www.raspberrypi.org/downloads/) から **Raspberry Pi Imager** をダウンロード
 
-1. ダウンロードしたファイルからRaspberry Pi Imagerをインストール
+3. ダウンロードしたファイルからRaspberry Pi Imagerをインストール
 
-1. Raspberry Pi Imager を起動
+4. Raspberry Pi Imager を起動
 
-1. Operating Systemの下にある、**CHOOSE OS** をクリック
+5. Operating Systemの下にある、**CHOOSE OS** をクリック
 
 	1. Raspberry Pi OS(other) をクリック
 
-	1. Raspberry Pi OS Lite(32-bit) を選択
+	2. Raspberry Pi OS Lite(32-bit) を選択
 
-1. SD Cardの下、**CHOOSE SD CARD** をクリック
+6. SD Cardの下、**CHOOSE SD CARD** をクリック
 
-1. 最初に挿入したSDカードを選択
+7. 最初に挿入したSDカードを選択
 
-1. **WHITE** をクリック
+8. **WHITE** をクリック
 
 ## SSHの設定
 
@@ -48,23 +48,23 @@ Raspberry Piで作るBLEタグのセンサー
 	> SDカードではなく、250MB程度が使用されている **boot** ディスクに入る。<br>
 	表示されない場合は挿入し直す。
 
-1. `ssh` というファイルを作成
+2. `ssh` というファイルを作成
 
 	> 拡張子は **必要ない** 
 
-1. SDカードを取り出す
+3. SDカードを取り出す
 
-## 3. Raspberry Piの起動とSSHの接続
+## Raspberry Piの起動とSSHの接続
 
 1. SDカードをスロットに挿入する
 
-1. LANケーブルを接続する
+2. LANケーブルを接続する
 
-1. Micro USB に電源を挿す
+3. Micro USB に電源を挿す
 
-1. ちょっと待つ
+4. ちょっと待つ
 
-1. SSH でアクセスする
+5. SSH でアクセスする
 
 ```
 Username:	pi
@@ -72,8 +72,6 @@ Password:	raspberry
 Address:	raspberrypi.local or 同一ネットワークのIPアドレス
 Port:		22
 ```
-
-- Open SSHだと↓
 
 ```shell
 $ ssh pi@raspberrypi.local
@@ -101,9 +99,9 @@ pi@raspberrypi:~ $
 $ sudo date --set='YYYY/MM/dd HH:mm:ss'
 ```
 
-1. 余裕があるならNTPサーバーを設定↓
+2. 余裕があるならNTPサーバーを設定
 
-	[参考](https://gris-et-blanc.net/raspi/152/)
+[参考](https://gris-et-blanc.net/raspi/152/)
 
 ```shell
 sudo nano /etc/systemd/timesyncd.conf
@@ -133,16 +131,16 @@ sudo nano /etc/systemd/timesyncd.conf
 -----
 ```
 
-1. アップデート
+3. アップデート
 
 ```shell
 $ sudo apt update
 $ sudo apt upgrade
 ```
 
-1. Python用Bluetoothライブラリ `Bluepy` のインストール
+4. Python用Bluetoothライブラリ `Bluepy` のインストール
 
 ```shell
-sudo apt install python3-dev python3-pip libglib2.0-dev
-sudo pip3 install bluepy
+$ sudo apt install python3-dev python3-pip libglib2.0-dev
+$ sudo pip3 install bluepy
 ```
