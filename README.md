@@ -101,6 +101,38 @@ pi@raspberrypi:~ $
 $ sudo date --set='YYYY/MM/dd HH:mm:ss'
 ```
 
+1. 余裕があるならNTPサーバーを設定↓
+
+	[参考](https://gris-et-blanc.net/raspi/152/)
+
+```shell
+sudo nano /etc/systemd/timesyncd.conf
+
+-----timesyncd.conf
+#  This file is part of systemd.
+#
+#  systemd is free software; you can redistribute it and/or modify it
+#  under the terms of the GNU Lesser General Public License as published by
+#  the Free Software Foundation; either version 2.1 of the License, or
+#  (at your option) any later version.
+#
+# Entries in this file show the compile time defaults.
+# You can change settings by editing this file.
+# Defaults can be restored by simply deleting this file.
+#
+# See timesyncd.conf(5) for details.
+
+[Time]
++ NTP=ntp.nict.jp ntp.jst.mfeed.ad.jp
++ FallbackNTP=time.google.com
+- #NTP
+- #FallbackNTP=…
+#RootDistanceMaxSec=5
+#PollIntervalMinSec=32
+#PollIntervalMaxSec=2048
+-----
+```
+
 1. アップデート
 
 ```shell
