@@ -93,13 +93,13 @@ pi@raspberrypi:~ $
 
 ## Raspberry Piの初期設定
 
-1. 時刻合わせ
+### 時刻合わせ
 
 ```shell
 $ sudo date --set='YYYY/MM/dd HH:mm:ss'
 ```
 
-2. 余裕があるならNTPサーバーを設定
+### 余裕があるならNTPサーバーを設定
 
 [参考](https://gris-et-blanc.net/raspi/152/)
 
@@ -129,16 +129,28 @@ sudo nano /etc/systemd/timesyncd.conf
 #PollIntervalMinSec=32
 #PollIntervalMaxSec=2048
 -----
+
+$ sudo timedatectl set-ntp true
+$ sudo systemctl daemon-reload
+$ sudo systemctl restart systemd-timesyncd.service
 ```
 
-3. アップデート
+aptサーバーの変更
+
+```
+#deb http://raspbian.raspberrypi.org/raspbian/ buster main contrib non-free rpi
+# Uncomment line below then 'apt-get update' to enable 'apt-get source'
+#deb-src http://raspbian.raspberrypi.org/raspbian/ buster main contrib non-free rpi
+```
+
+### アップデート
 
 ```shell
 $ sudo apt update
 $ sudo apt upgrade
 ```
 
-4. Python用Bluetoothライブラリ `Bluepy` のインストール
+### Python用Bluetoothライブラリ `bluepy` のインストール
 
 ```shell
 $ sudo apt install python3-dev python3-pip libglib2.0-dev
