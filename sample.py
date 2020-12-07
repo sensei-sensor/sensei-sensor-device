@@ -11,15 +11,13 @@ scanner = btle.Scanner(0)
 # 引数(timeout=10.0)は、スキャンする秒数を表す
 devices = scanner.scan(3.0)
 
-# # スキャンした結果を表示
-# #  ペリフェラルデバイスとの接続にはMACアドレスとアドレスタイプが必要
-# #  RSSIは要するに電波強度で、それなりにないと接続に成功しない
-# #  アドバタイシングデータは、そのペリフェラルデバイスがアドバタイズパケットで
-# #  周囲に発信している、デバイスの情報を表すデータ
-# device = devices
-# print(device, end='\n')
-# print(type(device))\
+# スキャンした結果を表示
+#  ペリフェラルデバイスとの接続にはMACアドレスとアドレスタイプが必要
+#  RSSIは要するに電波強度で、それなりにないと接続に成功しない
+#  アドバタイシングデータは、そのペリフェラルデバイスがアドバタイズパケットで
+#  周囲に発信している、デバイスの情報を表すデータ
 connectable_devices = [device for device in list(devices) if device.connectable]
+
 for device in connectable_devices:
     print(f'MAC Address:    {device.addr}')
     print(f'  Address Type: {device.addrType}')
@@ -32,6 +30,6 @@ for device in connectable_devices:
 # adTypeCodeはアドバタイシングデータのキーで、
 # descriptionはそれを人間が読めるように翻訳したもの。
 # そしてvalueTextはアドバタイシングデータの値
-    # print(f'  アドバタイシングデータ：')
-    # for (adTypeCode, description, valueText) in device.getScanData():
-    #     print(f'    {description}：{valueText}')
+    print(f'  アドバタイシングデータ：')
+    for (adTypeCode, description, valueText) in device.getScanData():
+        print(f'    {description}：{valueText}')
