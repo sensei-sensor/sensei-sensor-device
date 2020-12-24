@@ -18,11 +18,13 @@ devices = scanner.scan(3.0)
 #  周囲に発信している、デバイスの情報を表すデータ
 
 # dictをlistにしてconnectableなデバイスのみを保存
-connectable_devices = [device for device in list(devices) if device.connectable]
+connectable_devices = [device for device in list(
+    devices) if device.connectable]
 
 for device in connectable_devices:
     # Complete Local Nameを持っている端末のみを表示
     if(device.getValueText(9)):
+        print("==============================")
         print(f'MAC Address:    {device.addr}')
         print(f'  Address Type: {device.addrType}')
         print(f'  iface:        {device.iface}')
@@ -33,13 +35,16 @@ for device in connectable_devices:
         # adTypeCodeはアドバタイシングデータのキーで、
         # descriptionはそれを人間が読めるように翻訳したもの。
         # そしてvalueTextはアドバタイシングデータの値
-        print(f'  \nアドバタイシングデータ：')
+        print(f'  アドバタイシングデータ: ')
         for (adTypeCode, description, valueText) in device.getScanData():
             print(f'    {adTypeCode},{description}: {valueText}')
 
         # UUIDの取得
         peripheral = btle.Peripheral()
-        peripheral.connect(device.addr, btle.ADDR_TYPE_RANDOM)
+        if(device.addrType == "public"):
+            peripheral.connect(device.addr)
+        else:
+            peripheral.connect(device.addr, btle.ADDR_TYPE_RANDOM)
         for service in peripheral.getServices():
-            print(f'  \nUUID：{service.uuid}')
+            print(f'  UUID: {service.uuid}')
         peripheral.disconnect()
