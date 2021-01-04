@@ -1,6 +1,9 @@
-# https://www.ipride.co.jp/blog/2510 このサンプルコード
-
 from bluepy import btle
+import urllib.request
+import json
+
+# 部屋番号
+room_id = 1
 
 # デバイスをスキャンするためのクラスを初期化する。
 # 引数(index=0)は、使用するBluetoothインターフェースの番号を表す
@@ -39,3 +42,19 @@ for device in connectable_devices:
         for (adTypeCode, description, valueText) in device.getScanData():
             print(f'    {adTypeCode},{description}: {valueText}')
 
+        mac_address = device.addr
+
+        url = "http://localhost:3000/sensors"
+        method = "POST"
+        post_data = {
+            "room_id": room_id,
+            "mac_address": mac_address
+        }
+
+        json_data = json.dumps(post_data).encode("utf-8")
+        headers = {"Content-Type": "application/json"}
+
+        request = urllib.request.Request(
+            url, data=json_data, headers=headers, method=method)
+        with urllib.request.urlopen(request) as res:
+            body = res.read()
