@@ -39,12 +39,3 @@ for device in connectable_devices:
         for (adTypeCode, description, valueText) in device.getScanData():
             print(f'    {adTypeCode},{description}: {valueText}')
 
-        # UUIDの取得
-        peripheral = btle.Peripheral()
-        if(device.addrType == "public"):
-            peripheral.connect(device.addr)
-        else:
-            peripheral.connect(device.addr, btle.ADDR_TYPE_RANDOM)
-        for service in peripheral.getServices():
-            print(f'  UUID: {service.uuid}')
-        peripheral.disconnect()
