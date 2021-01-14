@@ -5,8 +5,11 @@ import json
 # 部屋番号
 room_id = 1
 
+# サーバーURL
+server_url = "http://localhost:3000/sensors"
+
 def send_server(mac_address):
-    url = "http://localhost:3000/sensors"
+    url = server_url
     method = "POST"
     post_data = {
         "room_id": room_id,
