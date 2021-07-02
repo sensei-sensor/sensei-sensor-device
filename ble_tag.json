@@ -1,0 +1,42 @@
+[
+  {
+    "number": 0,
+    "mac_address": "da:dc:da:62:6a:36"
+  },
+  {
+    "number": 1,
+    "mac_address": "f5:3a:a2:cb:1d:1f"
+  },
+  {
+    "number": 2,
+    "mac_address": "d1:78:7e:6c:fb:2b"
+  },
+  {
+    "number": 3,
+    "mac_address": "d4:43:39:17:43:12"
+  },
+  {
+    "number": 4,
+    "mac_address": "d5:be:bd:65:92:34"
+  },
+  {
+    "number": 5,
+    "mac_address": "f4:cd:38:6e:d3:f8"
+  },
+  {
+    "number": 6,
+    "mac_address": "C3:4D:BE:DE:B9:18"
+  },
+  {
+    "number": 7,
+    "mac_address": "e1:94:d4:11:6b:0c"
+  },
+  {
+    "number": 8,
+    "mac_address": "db:17:6a:06:15:99"
+  },
+  {
+    "number": 9,
+    "mac_address": "e5:47:d3:ec:7e:ad"
+  }
+]

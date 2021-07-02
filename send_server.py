@@ -5,6 +5,7 @@ import os
 from dotenv import load_dotenv
 load_dotenv()
 
+
 def send_server(mac_address):
     method = "POST"
     post_data = {
@@ -16,6 +17,9 @@ def send_server(mac_address):
     headers = {"Content-Type": "application/json"}
 
     request = urllib.request.Request(
-        os.getenv('SERVER_ADDRESS'), data=json_data, headers=headers, method=method)
+        os.getenv('SERVER_ADDRESS'),
+        data=json_data,
+        headers=headers,
+        method=method)
     with urllib.request.urlopen(request) as res:
         body = res.read()
