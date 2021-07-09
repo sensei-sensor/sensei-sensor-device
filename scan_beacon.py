@@ -5,6 +5,7 @@ from beacontools import BeaconScanner, IBeaconFilter, IBeaconAdvertisement
 
 ble_dic = {}
 
+
 def callback(bt_addr, rssi, packet, additional_info):
     if bt_addr in ble_dic:
         ble_dic[bt_addr] += 1
@@ -18,12 +19,16 @@ def callback(bt_addr, rssi, packet, additional_info):
 # - major
 # - minor
 # at least one must be specified.
-
 # scan for all iBeacon advertisements regardless from which beacon
-scanner = BeaconScanner(callback,
-                        packet_filter=IBeaconAdvertisement)
-scanner.start()
-time.sleep(5)
-scanner.stop()
+def main():
+    scanner = BeaconScanner(callback, packet_filter=IBeaconAdvertisement)
+    scanner.start()
+    time.sleep(5)
+    scanner.stop()
 
-print(ble_dic.keys())
+    return ble_dic
+
+
+if __name__ == "__main__":
+    main()
+    print(ble_dic.keys())

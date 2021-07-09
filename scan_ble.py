@@ -1,6 +1,4 @@
 from bluepy import btle
-import urllib.request
-import json
 import send_server
 
 # デバイスをスキャンするためのクラスを初期化する。
@@ -32,12 +30,5 @@ for device in connectable_devices:
         print(f'  RSSI:         {device.rssi}')
         print(f'  Connectable?: {device.connectable}')
         print(f'  Update Count: {device.updateCount}')
-
-        # adTypeCodeはアドバタイシングデータのキーで、
-        # descriptionはそれを人間が読めるように翻訳したもの。
-        # そしてvalueTextはアドバタイシングデータの値
-        print(f'  アドバタイシングデータ: ')
-        for (adTypeCode, description, valueText) in device.getScanData():
-            print(f'    {adTypeCode},{description}: {valueText}')
 
         send_server.send_server(device.addr)

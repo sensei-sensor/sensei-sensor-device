@@ -1,34 +1,30 @@
+import argparse
 import time
 import read_json
+import scan_beacon
 from beacontools import BeaconScanner, IBeaconFilter, IBeaconAdvertisement
 
-tag0 = 0
-tag1 = 0
 
-def callback(bt_addr, rssi, packet, additional_info):
-    global tag0, tag1
-    if (read_json.check_tag_number(bt_addr) is not None):
-        print("Tag number: %s" % (read_json.check_tag_number(bt_addr)))
-        print(" RSSI: %d" % (rssi))
-        if (read_json.check_tag_number(bt_addr) == 0):
-            tag0 += 1
-        elif (read_json.check_tag_number(bt_addr) == 1):
-            tag1 += 1
+def beacon():
+    ble_dic = scan_beacon.main()
+    print(ble_dic)
 
 
-# scan for all iBeacon advertisements from beacons with certain properties:
-# - uuid
-# - major
-# - minor
-# at least one must be specified.
+# python <file.py> <関数名> -i <関数内引数>
+if __name__ == "__main__":
+    parser = argparse.ArgumentParser()
+    parser.add_argument('function_name',
+                        type=str,
+                        help='set fuction name in this file')
+    parser.add_argument('-i', '--func_args',
+                        nargs='*',
+                        help='args in function',
+                        default=[])
+    args = parser.parse_args()
 
-# scan for all iBeacon advertisements regardless from which beacon
-scanner = BeaconScanner(callback,
-                        packet_filter=IBeaconAdvertisement)
-scanner.start()
-time.sleep(5)
-scanner.stop()
-
-print()
-print("Tag0: " + str(tag0))
-print("Tag1: " + str(tag1))
+    # このファイル内の関数を取得
+    func_dict = {k: v for k, v in locals().items() if callable(v)}
+    # 引数のうち，数値として解釈できる要素はfloatにcastする
+    func_args = [float(x) if x.isnumeric() else x for x in args.func_args]
+    # 関数実行
+    ret = func_dict[args.function_name](*func_args)
