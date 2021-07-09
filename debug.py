@@ -11,6 +11,7 @@ def beacon():
 
 
 # python <file.py> <関数名> -i <関数内引数>
+# https://qiita.com/kenichi-hamaguchi/items/dda5532f3b218142e7c9
 if __name__ == "__main__":
     parser = argparse.ArgumentParser()
     parser.add_argument('function_name',
