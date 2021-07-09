@@ -3,9 +3,14 @@ import send_server
 from beacontools import BeaconScanner, IBeaconFilter, IBeaconAdvertisement
 
 
+ble_dic = {}
+
 def callback(bt_addr, rssi, packet, additional_info):
+    if bt_addr in ble_dic:
+        ble_dic[bt_addr] += 1
+    else:
+        ble_dic[bt_addr] = 1
     print("MAC Address: %s \n RSSI: %d" % (bt_addr, rssi))
-    send_server.send_server(bt_addr)
 
 
 # scan for all iBeacon advertisements from beacons with certain properties:
@@ -20,3 +25,5 @@ scanner = BeaconScanner(callback,
 scanner.start()
 time.sleep(5)
 scanner.stop()
+
+print(ble_dic.keys())
