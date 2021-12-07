@@ -12,6 +12,7 @@ def callback(bt_addr, rssi, packet, additional_info):
     else:
         ble_dic[bt_addr] = 1
     print("MAC Address: %s \n RSSI: %d" % (bt_addr, rssi))
+    send_server.send_server(bt_addr)
 
 
 # scan for all iBeacon advertisements from beacons with certain properties:
@@ -23,7 +24,7 @@ def callback(bt_addr, rssi, packet, additional_info):
 def main():
     scanner = BeaconScanner(callback, packet_filter=IBeaconAdvertisement)
     scanner.start()
-    time.sleep(5)
+    time.sleep(30)
     scanner.stop()
 
     return ble_dic
