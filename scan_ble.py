@@ -19,20 +19,19 @@ while True:
     #  周囲に発信している、デバイスの情報を表すデータ
 
     # dictをlistにしてconnectableなデバイスのみを保存
-    connectable_devices = [device for device in list(
-        devices) if device.connectable]
+    connectable_devices = [device for device in list(devices) if device.connectable]
 
     for device in connectable_devices:
         # Complete Local Nameを持っている端末のみを表示
-        if(device.getValueText(9)):
+        if device.getValueText(9):
             print("==============================")
-            print(f'MAC Address:    {device.addr}')
-            print(f'  Address Type: {device.addrType}')
-            print(f'  iface:        {device.iface}')
-            print(f'  RSSI:         {device.rssi}')
-            print(f'  Connectable?: {device.connectable}')
-            print(f'  Update Count: {device.updateCount}')
+            print(f"MAC Address:    {device.addr}")
+            print(f"  Address Type: {device.addrType}")
+            print(f"  iface:        {device.iface}")
+            print(f"  RSSI:         {device.rssi}")
+            print(f"  Connectable?: {device.connectable}")
+            print(f"  Update Count: {device.updateCount}")
 
-            #send_server.send_server(device.addr)
+            # send_server.send_server(device.addr)
 
             regist_db.regist_ble(device.addr)
