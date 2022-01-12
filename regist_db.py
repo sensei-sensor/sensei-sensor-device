@@ -1,5 +1,5 @@
 import pymysql
-import ConnectDB as cnDB
+import connect_db as cnDB
 import os
 
 
