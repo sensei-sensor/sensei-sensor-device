@@ -3,14 +3,15 @@ Raspberry Piで作るBLEタグのセンサー
 
 ## デバイス
 
-- Raspberry Pi 3 Model 3B+
+- Raspberry Pi 3 Model 3B
+- Raspberry Pi Zero WH
 
 ## 環境
 
-- Raspberry Pi OS Lite(32-bit) 5.4.51-v7+
-- Python 3.7.3
-    - pip3 18.1
-    - bluepy 1.3.0
+- Raspberry Pi OS Lite(32-bit) 5.10.63-v7+
+- Python 3.9.9
+    - pip3 21.3.1
+    - pipenv
 
 ## 使い方
 
