@@ -2,9 +2,9 @@ import pymysql
 import os
 
 print("DB Info")
-print(os.getenv("DB_USER"))
-print(os.getenv("DB_PWD"))
-print(os.getenv("DB_NAME"))
+print("[connect_db]: " + os.getenv("DB_USER"))
+print("[connect_db]: " + os.getenv("DB_PWD"))
+print("[connect_db]: " + os.getenv("DB_NAME") + "\n")
 
 connect = pymysql.connect(
     host="localhost",

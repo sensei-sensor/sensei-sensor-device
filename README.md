@@ -34,3 +34,9 @@ sudo apt-get install python3-pip python3-dev libbluetooth-dev libglib2.0-dev lib
 sudo setcap 'cap_net_raw,cap_net_admin+eip' "$(readlink -f "$(which python3)")"
 sudo pipenv install
 ```
+
+- crontab の設定
+
+```
+*/3 * * * * sudo bash /home/pi/sensei-sensor-device/scan_script.sh
+```

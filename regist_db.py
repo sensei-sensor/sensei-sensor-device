@@ -21,7 +21,7 @@ def regist_ble(mac_address):
     user_id = get_user_id(mac_address)
     if user_id == None:
         return False
-    print("[regist_db] user_id: " + str(user_id) + "\n")
+    print("[regist_db] user_id: " + str(user_id))
     last_time_sql = "SELECT MIN(TIME_TO_SEC(TIMEDIFF(CURRENT_TIMESTAMP(),time))) AS diffTime FROM `discoveryLog` WHERE userId = {}".format(
         user_id
     )
@@ -29,7 +29,7 @@ def regist_ble(mac_address):
         cursor.execute(last_time_sql)
         sensor_time = cursor.fetchone()[0]
         cursor.close()
-    print( sensor_time)
+    print("[regist_db] sensor_time: " + str(sensor_time) + "\n")
     if sensor_time == None or sensor_time > int(os.getenv("SCAN_INTERVAL")):
         insert_discv_log_sql = "INSERT INTO discoveryLog (sensorId,userId,time) VALUES({},{},current_timestamp())".format(
             os.getenv("ROOM_ID"), user_id
