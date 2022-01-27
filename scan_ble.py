@@ -1,5 +1,4 @@
 from bluepy import btle
-import send_server
 import regist_db
 
 # デバイスをスキャンするためのクラスを初期化する。
@@ -34,4 +33,4 @@ while True:
 
             # send_server.send_server(device.addr)
 
-            regist_db.regist_ble(device.addr)
+            regist_db.regist_ble(device.addr.replace(":", ""))

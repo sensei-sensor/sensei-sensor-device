@@ -1,5 +1,6 @@
 import time
-import send_server
+import regist_db as RDB
+import datetime
 from beacontools import BeaconScanner, IBeaconFilter, IBeaconAdvertisement
 
 
@@ -11,8 +12,8 @@ def callback(bt_addr, rssi, packet, additional_info):
         ble_dic[bt_addr] += 1
     else:
         ble_dic[bt_addr] = 1
-    print("MAC Address: %s \n RSSI: %d" % (bt_addr, rssi))
-    send_server.send_server(bt_addr)
+    print("[scan_beacon] MAC Address: %s\n[scan_beacon] RSSI: %d" % (bt_addr, rssi))
+    RDB.regist_ble(bt_addr.replace(":", ""))
 
 
 # scan for all iBeacon advertisements from beacons with certain properties:
@@ -27,9 +28,8 @@ def main():
     time.sleep(30)
     scanner.stop()
 
-    return ble_dic
-
 
 if __name__ == "__main__":
     main()
+    print(datetime.datetime.now())
     print(ble_dic.keys())
