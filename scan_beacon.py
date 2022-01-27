@@ -32,4 +32,4 @@ def main():
 if __name__ == "__main__":
     main()
     print(datetime.datetime.now())
-    print(ble_dic.keys())
+    print(ble_dic.keys() + "\n")
